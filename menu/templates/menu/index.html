@@ -17,6 +17,7 @@
         <hr>
         <table class="table">
         <tr>
+            <th>ID</th>
             <th>NAME</th>
             <th>CALOLIE</th>
             <th>PROTEIN</th>
@@ -26,7 +27,8 @@
         </tr>
         {% for item in data %}
         <tr>
-            <td>{{item.name}]</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
             <td>{{item.calorie}}</td>
             <td>{{protein}}</td>
             <td>{{fat}}</td>

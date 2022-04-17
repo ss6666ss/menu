@@ -1,6 +1,7 @@
 from django import forms
 
 class MenuForm(forms.Form):
+    id = forms.IntegerFielld(label='ID')
     name = forms.CharField(label='name', \
         widget=forms.TextInput(attrs={'class':'form-control'}))
     calorie = forms.IntegerField(label='calorie', \

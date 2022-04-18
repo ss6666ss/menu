@@ -8,7 +8,7 @@ def index(request):
     params = {
         'title' : 'Menu',
         'message' : 'all menus',
-        'form' : MenuForm()
+        'form' : MenuForm(),
         'data' : [],
 
     }
@@ -18,7 +18,7 @@ def index(request):
         params['data'] = [item]
         params['form'] = HelloForm(request.POST)
     else:
-        params['data'] = Friend.objects.all()
+        params['data'] = Menu.objects.all()
         
     return render(request, 'menu/index.html', params)
 

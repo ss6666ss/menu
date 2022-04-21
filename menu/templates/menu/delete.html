@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    crossorigin="anonymous">
+</head>
+<body class="container">
+    <h1 class="display-4 text-primary">{{ title }}</h1>
+    <p>※以下のデータを削除します</p>
+    <table class="table">
+        <tr><th>ID</th><td>{{obj.id}}</td></tr>
+        <tr><th>NAME</th><td>{{obj.name}}</td></tr>
+        <tr><th>CALORIE</th><td>{{obj.calorie}}</td></tr>
+        <tr><th>PROTEIN</th><td>{{obj.protein}}</td></tr>
+        <tr><th>FAT</th><td>{{obj.fat}}</td></tr>
+        <tr><th>CARBOHYDRATES</th><td>{{obj.carbohydrates}}</td></tr>
+        <tr><th>DIETARY_FIBER</th><td>{{obj.dietary_fiber}}</td></tr>
+        <form action="{% url 'delete' id %}" method="post">
+        {% csrf_token %}
+        <tr><th></th></td>
+            <input type="submit" value="click" class="btn btn-primary">
+        </td></tr>
+        </form>
+    </table>
+</body>
+</html>

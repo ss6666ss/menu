@@ -1,7 +1,8 @@
 from django import forms
 from .models import Menu
 
-class MenuForm(forms.Form):
+class MenuForm(forms.ModelForm):
     class Meta:
         model = Menu
-        menus   = ['name', 'calorie', 'protein', 'fat', 'carbohydrates', 'dietary_fiber']
+        fields   = ['name', 'calorie', 'protein', 'fat', 'carbohydrates', 'dietary_fiber']
+        

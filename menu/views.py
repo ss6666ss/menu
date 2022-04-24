@@ -4,11 +4,14 @@ from django.shortcuts import redirect
 from .forms import MenuForm
 from .models import Menu
 from .forms import FindForm
+from django.core.paginator import Paginator
 
 def index(request):
     data = Menu.objects.all()
+    page = Paginator(data, 5)
     params = {
         'title' : 'Menu',
+        'message': '',
         'data' : data,
 
     }
@@ -56,7 +59,7 @@ def find(request):
     if (request.method == 'POST'):
         form = FindForm(request.POST)
         find = request.POST['find']
-        data = Friend.objects.filter(name=find)
+        data = Menu.objects.filter(name__iexact=find)
         msg = 'Result: ' + str(data.count())
     else:
         msg = 'search words...'
@@ -68,4 +71,4 @@ def find(request):
         'form': form,
         'data': data,
     }
-    return render(request, 'hello/find.html', params)
+    return render(request, 'menu/find.html', params)

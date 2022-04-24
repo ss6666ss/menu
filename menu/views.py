@@ -6,9 +6,9 @@ from .models import Menu
 from .forms import FindForm
 from django.core.paginator import Paginator
 
-def index(request):
+def index(request, num=1):
     data = Menu.objects.all()
-    page = Paginator(data, 5)
+    page = Paginator(data, 3)
     params = {
         'title' : 'Menu',
         'message': '',

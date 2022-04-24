@@ -10,7 +10,7 @@
 </head>
 <body class="container">
     <h1 class="display-4 text-primary">{{ title }}</h1>
-    <p>{{message|safe}]</p>
+    <p>{{message|safe}}</p>
     <table class="table">
         <tr>
             <th>id</th>
@@ -39,7 +39,17 @@
                 &laquo; first
             </a>
         </li>
+        <li class="page-item">
+            <a class="page-link" href="{% url 'index' %}{{data.previous_page_number}}">
+                &laquo; prev
+            </a>
+        </li>
         {% else %}
+        <li class="page-item">
+            <a class="page-link">
+                &laquo first
+            </a>
+        </li>
         <li class="page-item">
             <a class="page-link">
                 &laquo prev

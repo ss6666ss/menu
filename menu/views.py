@@ -12,7 +12,7 @@ def index(request, num=1):
     params = {
         'title' : 'Menu',
         'message': '',
-        'data' : data,
+        'data' : page.get_page(num),
 
     }
         

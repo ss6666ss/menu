@@ -23,12 +23,26 @@
             <th>id</th>
             <th>name</th>
             <th>calorie</th>
+            <th>protein</th>
+            <th>fat</th>
+            <th>carbohydrates</th>
+            <th>dietary_fiber</th>
+            <th>favorite</th>
         </tr>
     {% for item in data %}
         <tr>
             <th>{{item.id}}</th>
             <td>{{item.name}}</td>
             <td>{{item.calorie}}</td>
+            <td>{{item.protein}}</td>
+            <td>{{item.fat}}</td>
+            <td>{{item.carbohydrates}}</td>
+            <td>{{item.dietary_fiber}}</td>
+            <td>
+                <td><a href="{% url 'favorite' item.id%}">{{item.favorite}}</a>
+            <td>
+                <td><a href="{% url 'delete' item.id %}">"削除"</a></td>
+            </td>
         </tr>
     {% endfor %}
     </table>

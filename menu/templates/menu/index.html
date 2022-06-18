@@ -11,6 +11,10 @@
 <body class="container">
     <h1 class="display-4 text-primary">{{ title }}</h1>
     <p>{{message|safe}}</p>
+
+    <a href="{% url 'create' %}">Create/</a>
+    <a href="{% url 'find' %}">Find</a>
+    
     <table class="table">
         <tr>
             <th>id</th>
@@ -20,6 +24,7 @@
             <th>fat</th>
             <th>carbohydrates</th>
             <th>dietary_fiber</th>
+            <th>favorite</th>
         </tr>
     {% for item in data %}
         <tr>
@@ -27,8 +32,11 @@
             <td>{{item.name}}</td>
             <td>{{item.calorie}}</td>
             <td>{{item.protein}}</td>
+            <td>{{item.fat}}</td>
             <td>{{item.carbohydrates}}</td>
             <td>{{item.dietary_fiber}}</td>
+            <td>{% if item.favorite == False %} {% endif %}
+                {% if item.favorite == True %}★{% endif %}</td>
         </tr>
     {% endfor%}
     </table>
@@ -47,12 +55,12 @@
         {% else %}
         <li class="page-item">
             <a class="page-link">
-                &laquo first
+                &laquo; first
             </a>
         </li>
         <li class="page-item">
             <a class="page-link">
-                &laquo prev
+                &laquo; prev
             </a>
         </li>
         {% endif %}
@@ -70,7 +78,7 @@
         </li>
         <li class="page-item">
             <a class="page-link"
-            href="{% url 'index' %}{{data.num_pages}}">
+            href="{% url 'index' %}{{data.paginator.num_pages}}">
                 last &raquo;
             </a>
         </li>

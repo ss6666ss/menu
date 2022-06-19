@@ -103,23 +103,5 @@ def favorite(request,num):
         
     params = {
         'id': num,
-        'obj': menu,
     }
 
-
-def mypage(request):
-
-    my_food = Cook.objects.get(favorite=True)
-
-    if (request.method == 'POST'):
-        form = CookForm(request.POST)
-        data = CookForm(request.POST, instance=my_food)
-
-    params = {
-        'title': 'Cook',
-        'message': ' ',
-        'form:': form,
-        'data': data,
-    }
-
-    return render(request, 'menu/mypage', params)

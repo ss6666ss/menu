@@ -9,5 +9,4 @@ urlpatterns = [
     path('find', views.find, name='find'),
     path('<int:num>', views.index, name='index'),
     path('favorite/<int:num>', views.favorite, name='favorite'),
-    path('mypage', views.mypage, name='mypage')
 ]

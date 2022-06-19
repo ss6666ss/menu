@@ -1,5 +1,5 @@
 from django import forms
-from .models import Menu, Cook
+from .models import Menu
 from . import models
 
 class MenuForm(forms.ModelForm):

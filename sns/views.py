@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.shortcuts import reirect
+from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.core.pagintor import Paginator
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -58,7 +58,7 @@ def groups(request):
             friendsform - FriendsForm(request.user, friends = friends, vals = vlist)
 
         if request.POST['mode'] == '__friends_form__':
-            selgroup request.POST['group']
+            sel_group = request.POST['group']
             group_obj = Group.objects.filter(title = sel_group).first()
             print(group_obj)
             sel_fds = request.POST.getlist('friends')
@@ -171,7 +171,7 @@ def share(request, share_id):
         msg.content = content
         msg.share_id = share_id
         msg.save()
-        share_msg  msg.get_share()
+        share_msg = msg.get_share()
         share_msg.share_count += 1
         share_msg.save()
         messages.success(request, 'メッセージをシェアしました！')

@@ -1,13 +1,13 @@
-from djanog import forms
-from django import Message,Group,Friend,Good
-from djanog.contrib.auth.models import User
+from django import forms
+from .models import Message,Group,Friend,Good
+from django.contrib.auth.models import User
 
 class GroupCheckForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(GroupCheckForm, self).__init__(*args, **kwargs)
         public = User.objects.filter(username = 'public').first()
         self.fields['groups'] = forms.MultipleChoiceField(
-            choices = [(item.title, item.title) for item in Group.objects.filter(owner__in = user, public)],
+            choices = [(item.title, item.title) for item in Group.objects.filter(owner__in = [user, public])],
             widget = forms.CheckboxSelectMultiple(),
         )
 

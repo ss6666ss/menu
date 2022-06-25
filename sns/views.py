@@ -216,7 +216,8 @@ def get_your_group_message(owner, glist, page):
     for f in me_friends:
         me_users.append(f.user)
     
-    his_groups = Group.objects.filter(user = owner).filter(group__in = his_groups)
+    his_groups = Group.objects.filter(owner__in = me_users)
+    his_friends = Friend.objects.filter(user = owner).filter(group__in = his_groups)
     me_groups = []
 
     for hf in his_friends:

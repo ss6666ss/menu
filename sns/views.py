@@ -223,7 +223,7 @@ def get_your_group_message(owner, glist, page):
     for hf in his_friends:
         me_groups.append(hf.group)
 
-    messages = Message.objects.filter(Q(group__in = grouops)|Q(group__in = me_groups))
+    messages = Message.objects.filter(Q(group__in = groups)|Q(group__in = me_groups))
     page_item = Paginator(messages, page_num)
 
     return page_item.get_page(page)

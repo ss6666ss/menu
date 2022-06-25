@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from django.contrib.auth.models import User
-from .models import Gruoup,Message
+from .models import Group,Message
 
 class SnsTests(TestCase):
 
@@ -9,7 +9,7 @@ class SnsTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         (usr, grp) = cls.create_user_and_group()
-        cls.create_messsage(usr, grp)
+        cls.create_message(usr, grp)
 
     @classmethod
     def create_user_and_group(cls):
@@ -26,11 +26,15 @@ class SnsTests(TestCase):
         Message(content = 'this is test message.', owner_id = usr.id, group_id = grp.id).save()
         Message(content = 'test', owner_id = usr.id, group_id = grp.id).save()
         Message(content = "ok", owner_id = usr.id, group_id = grp.id).save()
-        Message(contnt = "ng", owner__id = usr.id, group_id = grp.id).save()
+        Message(content = "ng", owner__id = usr.id, group_id = grp.id).save()
         Message(content = 'finish', owner_id = usr.id, group_id = grp.id).save()
 
     def test_check(self):
-        usr = User.objects.first()
-        self.aasertIsNotNone(usr)
-        msg = Message.objects.first()
-        self.assertIsNotNone(msg)
+        usr = User.objects.filter(username = 'test').first()
+        response = self.client.get(reverse('index'))
+        self.assertIs(response.tatus_code, 302)
+
+        self.client.force_login(usr)
+        response = self.client.get(reverse('index'))
+        self.assertIs(response.status_code, 200)
+        self.assertContains(response, 'this is test message.')

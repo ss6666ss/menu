@@ -92,7 +92,7 @@ def groups(request):
 
 @login_required(login_url = '/admin/login')
 def add(request):
-    add_name = request.GET['name']
+    add_name = request.GET.get('name')
     add_user = User.objects.filter(username = add_name).first()
 
     if add_user == request.user:

@@ -10,6 +10,20 @@
 </head>
 <body class="container">
     <h1 class="display-4 text-primary">{{ title }}</h1>
+    <hr>
+
+<!--　tableでお気に入り登録したオブジェクトが合算された値それぞれを表示させる -->
+
+    <table class="table">
+        <tr>
+            <th>calorie : {{fav.cal}}  (cal)</th>
+            <th>protein : {{fav.pro}} (g)</th>
+            <th>fat : {{fav.fat}} (g)</th>
+            <th>carbohydrates : {{fav.car}} (g)</th>
+            <th>dietary_fiber : {{fav.die}} (g)</th>
+        </tr>
+    </table>
+    </hr>
     <p>{{messge|safe}}</p>
     <form action="{% url 'find' %}" method="post">
         {% csrf_token %}
@@ -18,6 +32,9 @@
             <input type="submit" value="click" class="btn btn-primary mt-2"></td></tr>
     </form>
     <hr>
+
+<!-- tableで検索したオブジェクトを一覧表示 -->
+
     <table class="table">
         <tr>
             <th>id</th>
@@ -27,7 +44,9 @@
             <th>fat</th>
             <th>carbohydrates</th>
             <th>dietary_fiber</th>
-            <th>favorite</th>
+            <th>favorite</th>      
+            <th>delete</th>
+            <th>edit</th>     
         </tr>
     {% for item in data %}
         <tr>
@@ -39,12 +58,18 @@
             <td>{{item.carbohydrates}}</td>
             <td>{{item.dietary_fiber}}</td>
             <td>
-                <td><a href="{% url 'favorite' item.id%}">{{item.favorite}}</a>
+                <td><a href="{% url 'favorite' item.id%}">
+                    {% if item.favorite == False %}☆{% endif %}
+                    {% if item.favorite == True %}★{% endif %}</a>
             <td>
                 <td><a href="{% url 'delete' item.id %}">"削除"</a></td>
+            </td>
+            <td>
+                <td><a href="{% url 'edit' item.id %}">"編集"</a></td>
             </td>
         </tr>
     {% endfor %}
     </table>
+    </hr>
 </body>
 </html>

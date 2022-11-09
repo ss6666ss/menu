@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 #食品の一覧ページ、5件ごとのページネーションで表示のみ
 
-def menu_index(request, num=1):
+def index(request, num=1):
     data = Menu.objects.all()
     page = Paginator(data, 5)
     params = {
@@ -19,7 +19,7 @@ def menu_index(request, num=1):
         'data' : page.get_page(num),
     }
         
-    return render(request, 'menu/menu_index.html', params)
+    return render(request, 'menu/index.html', params)
 
 #新しくオブジェクトを作成する専用ページ、追加後は一覧ページへ移行する
 
